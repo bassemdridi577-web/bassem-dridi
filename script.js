@@ -2,10 +2,17 @@
 // FICHIER JAVASCRIPT PRINCIPAL
 // ============================================
 
+let currentLang = localStorage.getItem('portfolio_lang') || 'fr';
+let typingTimeout = null;
+let currentTitleIndex = 0;
+let currentCharIndex = 0;
+let typingIsDeleting = false;
+
 // Initialiser au chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
     initializePreloader();
     initializeNavigation();
+    initializeLanguageSwitcher();
     initializeTypingEffect();
     populateContent();
     initializeScrollAnimations();
@@ -126,38 +133,48 @@ function resetMenuIcon(toggle) {
 
 function initializeTypingEffect() {
     const typingText = document.getElementById('typingText');
-    const titles = portfolioData.personal.titles;
-    let titleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
+    if (!typingText) return;
+
+    // Clear any active timeout to prevent multiple loops running concurrently
+    if (typingTimeout) clearTimeout(typingTimeout);
 
     function type() {
-        const currentTitle = titles[titleIndex];
+        const titles = portfolioData[currentLang].personal.titles;
+        if (currentTitleIndex >= titles.length) currentTitleIndex = 0;
+        const currentTitle = titles[currentTitleIndex];
 
-        if (isDeleting) {
-            typingText.textContent = currentTitle.substring(0, charIndex - 1);
-            charIndex--;
+        let typingSpeed = 100;
+
+        if (typingIsDeleting) {
+            typingText.textContent = currentTitle.substring(0, currentCharIndex - 1);
+            currentCharIndex--;
             typingSpeed = 50;
         } else {
-            typingText.textContent = currentTitle.substring(0, charIndex + 1);
-            charIndex++;
+            typingText.textContent = currentTitle.substring(0, currentCharIndex + 1);
+            currentCharIndex++;
             typingSpeed = 100;
         }
 
-        if (!isDeleting && charIndex === currentTitle.length) {
+        if (!typingIsDeleting && currentCharIndex === currentTitle.length) {
             typingSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            titleIndex = (titleIndex + 1) % titles.length;
+            typingIsDeleting = true;
+        } else if (typingIsDeleting && currentCharIndex === 0) {
+            typingIsDeleting = false;
+            currentTitleIndex = (currentTitleIndex + 1) % titles.length;
             typingSpeed = 500;
         }
 
-        setTimeout(type, typingSpeed);
+        typingTimeout = setTimeout(type, typingSpeed);
     }
 
     type();
+}
+
+function resetTypingEffect() {
+    currentTitleIndex = 0;
+    currentCharIndex = 0;
+    typingIsDeleting = false;
+    initializeTypingEffect();
 }
 
 // ============================================
@@ -173,7 +190,7 @@ function populateContent() {
 }
 
 function populatePersonalInfo() {
-    const { name, description, profileImage } = portfolioData.personal;
+    const { name, description, profileImage } = portfolioData[currentLang].personal;
 
     document.getElementById('heroName').textContent = name;
     document.getElementById('heroDescription').textContent = description;
@@ -186,7 +203,7 @@ function populatePersonalInfo() {
 }
 
 function populateAboutSection() {
-    const { paragraphs } = portfolioData.about;
+    const { paragraphs } = portfolioData[currentLang].about;
 
     // Mettre à jour les paragraphes
     paragraphs.forEach((text, index) => {
@@ -201,7 +218,7 @@ function populateSkills() {
     const skillsGrid = document.getElementById('skillsGrid');
     if (!skillsGrid) return;
 
-    skillsGrid.innerHTML = portfolioData.skills.map(skill => `
+    skillsGrid.innerHTML = portfolioData[currentLang].skills.map(skill => `
         <div class="skill-card">
             <div class="skill-icon">${skill.icon}</div>
             <h3 class="skill-name">${skill.name}</h3>
@@ -257,22 +274,24 @@ function populateProjects() {
     const freelanceGrid = document.getElementById('freelanceGrid');
     const passionGrid = document.getElementById('passionGrid');
 
-    if (companyGrid && portfolioData.projects.company) {
-        companyGrid.innerHTML = portfolioData.projects.company.map(p => generateProjectHTML(p, "Entreprise")).join('');
+    const projects = portfolioData[currentLang].projects;
+
+    if (companyGrid && projects.company) {
+        companyGrid.innerHTML = projects.company.map(p => generateProjectHTML(p, currentLang === 'fr' ? "Entreprise" : "Enterprise")).join('');
     }
     
-    if (freelanceGrid && portfolioData.projects.freelance) {
-        freelanceGrid.innerHTML = portfolioData.projects.freelance.map(p => generateProjectHTML(p, "Freelance")).join('');
+    if (freelanceGrid && projects.freelance) {
+        freelanceGrid.innerHTML = projects.freelance.map(p => generateProjectHTML(p, "Freelance")).join('');
     }
     
-    if (passionGrid && portfolioData.projects.passion) {
-        passionGrid.innerHTML = portfolioData.projects.passion.map(p => generateProjectHTML(p, "Passion")).join('');
+    if (passionGrid && projects.passion) {
+        passionGrid.innerHTML = projects.passion.map(p => generateProjectHTML(p, currentLang === 'fr' ? "Passion" : "Passion Project")).join('');
     }
 }
 
 function populateContact() {
-    const { email, github, linkedin } = portfolioData.personal;
-    const { text } = portfolioData.contact;
+    const { email, github, linkedin } = portfolioData[currentLang].personal;
+    const { text } = portfolioData[currentLang].contact;
 
     const contactText = document.getElementById('contactText');
     if (contactText) {
@@ -292,6 +311,57 @@ function populateContact() {
         linkedinLink.href = linkedin;
         linkedinLink.querySelector('span').textContent = linkedin.replace('https://', '');
     }
+}
+
+// ============================================
+// GESTION DU LANGAGE / MULTILINGUE (i18n)
+// ============================================
+
+function initializeLanguageSwitcher() {
+    const langSwitch = document.getElementById('langSwitch');
+    if (!langSwitch) return;
+
+    const buttons = langSwitch.querySelectorAll('.lang-btn');
+
+    // Mettre à jour la classe active sur le bouton initial
+    buttons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === currentLang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+
+        btn.addEventListener('click', () => {
+            const selectedLang = btn.getAttribute('data-lang');
+            if (selectedLang === currentLang) return;
+
+            currentLang = selectedLang;
+            localStorage.setItem('portfolio_lang', currentLang);
+
+            // Mettre à jour l'apparence des boutons
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Traduire l'interface, le contenu et l'effet de frappe
+            translateUI();
+            populateContent();
+            resetTypingEffect();
+        });
+    });
+
+    // Lancer la première traduction
+    translateUI();
+}
+
+function translateUI() {
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const translation = portfolioData.translations[currentLang][key];
+        if (translation) {
+            el.innerHTML = translation;
+        }
+    });
 }
 
 // ============================================
@@ -315,7 +385,7 @@ function initializeScrollAnimations() {
 
     // Observer toutes les sections et cartes
     const animatedElements = document.querySelectorAll(
-        '.skill-card, .project-card, .contact-link, .about-content, .stack__item'
+        '.skill-card, .project-card, .contact-link, .about-content, .stack__item, .education-card, .bi-competencies-card'
     );
 
     animatedElements.forEach(el => {
