@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio professionnel de développeur présentant mes projets et compétences">
+    <title>Portfolio Développeur</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="is-loading">
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <span class="preloader-bracket preloader-bracket-left">&lt;</span>
+                <span class="preloader-text">DevPortfolio</span>
+                <span class="preloader-bracket preloader-bracket-right">/&gt;</span>
+            </div>
+            <div class="preloader-line"></div>
+            <div class="preloader-counter" id="preloaderCounter">0</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">DevPortfolio</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#skills" class="nav-link">Compétences</a></li>
+                <li><a href="#projects" class="nav-link">Projets</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting">Bonjour, je suis</p>
+                <h1 class="hero-name" id="heroName">Votre Nom</h1>
+                <h2 class="hero-title">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="cursor">|</span>
+                </h2>
+                <p class="hero-description" id="heroDescription">
+                    Créer des solutions élégantes à des problèmes complexes grâce à un code propre et une conception
+                    innovante.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Voir Mes Projets</a>
+                    <a href="#contact" class="btn btn-secondary">Me Contacter</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Défiler vers le bas</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">01.</span>
+                À Propos de Moi
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p id="aboutParagraph1">
+                        Je suis un développeur passionné qui aime créer des applications pour le web. Mon parcours dans
+                        le développement logiciel a commencé [VOTRE HISTOIRE ICI].
+                    </p>
+                    <p id="aboutParagraph2">
+                        Je me spécialise dans la création d'expériences numériques exceptionnelles qui sont rapides,
+                        accessibles et conviviales. Actuellement, je me concentre sur [VOTRE FOCUS ACTUEL].
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="my photo.png"
+                            alt="Photo de profil" id="profileImage">
+                        <div class="image-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">02.</span>
+                Compétences & Expertise
+            </h2>
+            <div class="skills-grid" id="skillsGrid">
+                <!-- Skills will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="techStack" class="tech-stack-section">
+        <div class="container">
+            <p class="tech-stack-subtitle">Mon Arsenal</p>
+            <h2 class="tech-stack-heading">Technologies de Pointe</h2>
+            <div class="stack__grid">
+                <!-- n8n -->
+                <div class="stack__item reveal" data-tech="n8n">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/n8n.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/n8n.svg');">
+                    </div>
+                    <span class="stack__name">n8n</span>
+                </div>
+                <!-- Python -->
+                <div class="stack__item reveal" data-tech="python">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/python.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/python.svg');">
+                    </div>
+                    <span class="stack__name">Python</span>
+                </div>
+                <!-- JS -->
+                <div class="stack__item reveal" data-tech="js">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/javascript.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/javascript.svg');">
+                    </div>
+                    <span class="stack__name">JavaScript</span>
+                </div>
+                <!-- React -->
+                <div class="stack__item reveal" data-tech="react">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/react.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/react.svg');">
+                    </div>
+                    <span class="stack__name">React</span>
+                </div>
+                <!-- PostgreSQL -->
+                <div class="stack__item reveal" data-tech="postgresql">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/postgresql.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/postgresql.svg');">
+                    </div>
+                    <span class="stack__name">PostgreSQL</span>
+                </div>
+                <!-- OpenAI -->
+                <div class="stack__item reveal" data-tech="openai">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/openai.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/openai.svg');">
+                    </div>
+                    <span class="stack__name">OpenAI</span>
+                </div>
+                <!-- Node.js -->
+                <div class="stack__item reveal" data-tech="node">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/nodedotjs.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/nodedotjs.svg');">
+                    </div>
+                    <span class="stack__name">Node.js</span>
+                </div>
+                <!-- Google AI Studio -->
+                <div class="stack__item reveal" data-tech="google">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/googlegemini.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/googlegemini.svg');">
+                    </div>
+                    <span class="stack__name">Google AI</span>
+                </div>
+                <!-- OpenRouter -->
+                <div class="stack__item reveal" data-tech="openrouter">
+                    <div class="stack__icon"
+                        style="mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M16.778 1.844v1.919q-.569-.026-1.138-.032-.708-.008-1.415.037c-1.93.126-4.023.728-6.149 2.237-2.911 2.066-2.731 1.95-4.14 2.75-.396.223-1.342.574-2.185.798-.841.225-1.753.333-1.751.333v4.229s.768.108 1.61.333c.842.224 1.789.575 2.185.799 1.41.798 1.228.683 4.14 2.75 2.126 1.509 4.22 2.11 6.148 2.236.88.058 1.716.041 2.555.005v1.918l7.222-4.168-7.222-4.17v2.176c-.86.038-1.611.065-2.278.021-1.364-.09-2.417-.357-3.979-1.465-2.244-1.593-2.866-2.027-3.68-2.508.889-.518 1.449-.906 3.822-2.59 1.56-1.109 2.614-1.377 3.978-1.466.667-.044 1.418-.017 2.278.02v2.176L24 6.014Z%22/></svg>'); -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path d=%22M16.778 1.844v1.919q-.569-.026-1.138-.032-.708-.008-1.415.037c-1.93.126-4.023.728-6.149 2.237-2.911 2.066-2.731 1.95-4.14 2.75-.396.223-1.342.574-2.185.798-.841.225-1.753.333-1.751.333v4.229s.768.108 1.61.333c.842.224 1.789.575 2.185.799 1.41.798 1.228.683 4.14 2.75 2.126 1.509 4.22 2.11 6.148 2.236.88.058 1.716.041 2.555.005v1.918l7.222-4.168-7.222-4.17v2.176c-.86.038-1.611.065-2.278.021-1.364-.09-2.417-.357-3.979-1.465-2.244-1.593-2.866-2.027-3.68-2.508.889-.518 1.449-.906 3.822-2.59 1.56-1.109 2.614-1.377 3.978-1.466.667-.044 1.418-.017 2.278.02v2.176L24 6.014Z%22/></svg>');">
+                    </div>
+                    <span class="stack__name">OpenRouter</span>
+                </div>
+                <!-- Docker -->
+                <div class="stack__item reveal" data-tech="docker">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/docker.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/docker.svg');">
+                    </div>
+                    <span class="stack__name">Docker</span>
+                </div>
+                <!-- WordPress -->
+                <div class="stack__item reveal" data-tech="wordpress">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/wordpress.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/wordpress.svg');">
+                    </div>
+                    <span class="stack__name">WordPress</span>
+                </div>
+                <!-- PHP -->
+                <div class="stack__item reveal" data-tech="php">
+                    <div class="stack__icon"
+                        style="mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/php.svg'); -webkit-mask-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v14/icons/php.svg');">
+                    </div>
+                    <span class="stack__name">PHP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">03.</span>
+                Projets en Vedette
+            </h2>
+            
+            <div class="projects-disclaimer">
+                <span class="projects-disclaimer-icon">💡</span>
+                <p class="projects-disclaimer-text">
+                    <strong>Note importante :</strong> Tous les projets présentés ci-dessous sont des versions de <strong>démonstration</strong>. Certaines fonctionnalités avancées ou intégrations d'infrastructure peuvent être absentes ou limitées par rapport aux applications réelles déployées en production.
+                </p>
+            </div>
+
+            <div class="projects-category">
+                <h3 class="category-title">Projets d'Entreprise</h3>
+                <div class="projects-grid" id="companyGrid">
+                    <!-- Company projects will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <div class="projects-category">
+                <h3 class="category-title">Projets Freelance</h3>
+                <div class="projects-grid" id="freelanceGrid">
+                    <!-- Freelance projects will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <div class="projects-category">
+                <h3 class="category-title">Projets Passion & Explorations</h3>
+                <div class="projects-grid" id="passionGrid">
+                    <!-- Passion projects will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">04.</span>
+                Contacter Nous
+            </h2>
+            <div class="contact-content">
+                <p class="contact-text" id="contactText">
+                    Je suis actuellement à la recherche de nouvelles opportunités. Que vous ayez une question ou que
+                    vous vouliez simplement dire bonjour, n'hésitez pas à me contacter !
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:dridibassem1234@gmail.com" class="contact-link" id="emailLink">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>dridibassem1234@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bassem-dridi-69715b222/" target="_blank" class="contact-link"
+                        id="linkedinLink">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                        <span>linkedin.com/in/yourusername</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Bassem Dridi. Créé avec passion et café.</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
