@@ -21,7 +21,7 @@ const portfolioData = {
         },
         about: {
             paragraphs: [
-                "Je suis un développeur passionné qui aime créer des applications pour le web. Mon parcours dans le développement logiciel a commencé lorsque j'ai découvert le pouvoir de transformer des idées en réalité grâce au code.",
+                "Je suis un développeur passionné qui aime créer des applications web. Mon parcours dans le développement logiciel a commencé lorsque j'ai découvert le pouvoir de transformer des idées en réalité grâce au code.",
                 "Je me spécialise dans la création d'expériences numériques exceptionnelles qui sont rapides, accessibles et conviviales. Actuellement, je me concentre sur la création de solutions innovantes qui font la différence."
             ]
         },
